@@ -5,7 +5,7 @@ Refer to the 'master' branch for the actual project files. The 'README' branch o
 
 -------Overview-------
 
-This repository contains the code for an Android mobile app which was created using Kotlin. 
+This repository contains the code for an Android mobile app which was created using Kotlin. The mobile app is a presenter of current + forecasted ocean and weather conditions for beaches around the globe.
 
 -------Project Purpose-------
 
