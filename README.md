@@ -1,7 +1,7 @@
 # WavePlan
 -------Read Me-------
 
-Refer to the 'Master' branch for the actual project files. The 'README' branch on Github for this project serves only as a landing page.
+Refer to the 'master' branch for the actual project files. The 'README' branch on Github for this project serves only as a landing page.
 
 -------Overview-------
 
