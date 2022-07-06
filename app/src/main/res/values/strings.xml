@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Waveplan</string>
+    <string name="explore">Explore</string>
+    <string name="watchlist">Watchlist</string>
+    <string name="wave_height">%.0f ft</string>
+    <string name="wave_direction">%.0f°</string>
+    <string name="wave_period">%.0fs</string>
+    <string name="wind_speed">%.0f kts</string>
+    <string name="wind_direction">%.0f°</string>
+    <string name="cloud_cover">%.0f%%</string>
+    <string name="air_temperature">%.0f°</string>
+    <string name="water_temperature">%.0f°</string>
+    <string name="visibility">Visibility: %.0f miles</string>
+    <string name="humidity">Humidity: %.0f%%</string>
+    <string name="current_direction">at %.0f°</string>
+    <string name="current_speed">Current: %.1f ft/sec</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

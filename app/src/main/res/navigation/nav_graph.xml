@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/continentFragment">
+
+    <fragment
+        android:id="@+id/exploreFragment"
+        android:name="com.waitinglobby.waveplan.ui.explore.ExploreFragment"
+        android:label="{userSelectedCity}"
+        tools:layout="@layout/fragment_explore">
+        <action
+            android:id="@+id/action_exploreFragment_to_beachDetailFragment"
+            app:destination="@id/beachDetailFragment"
+            app:popUpTo="@id/exploreFragment" />
+        <argument
+            android:name="userSelectedCity"
+            app:argType="string" />
+        <argument
+            android:name="selectedContinentID"
+            app:argType="integer" />
+        <argument
+            android:name="selectedCountryID"
+            app:argType="integer" />
+        <argument
+            android:name="selectedStateID"
+            app:argType="integer" />
+        <argument
+            android:name="selectedCityID"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/watchlistFragment"
+        android:name="com.waitinglobby.waveplan.ui.watchlist.WatchlistFragment"
+        android:label="Watchlist"
+        tools:layout="@layout/fragment_watchlist" >
+        <action
+            android:id="@+id/action_watchlistFragment_to_beachDetailFragment"
+            app:destination="@id/beachDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/beachDetailFragment"
+        android:name="com.waitinglobby.waveplan.ui.beachdetail.BeachDetailFragment"
+        android:label="{userSelectedBeach}">
+        <argument
+            android:name="selectedBeachID"
+            app:argType="integer" />
+        <argument
+            android:name="userSelectedBeach"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/continentFragment"
+        android:name="com.waitinglobby.waveplan.ui.continent.ContinentFragment"
+        android:label="Find a Beach"
+        tools:layout="@layout/fragment_continent">
+        <action
+            android:id="@+id/action_continentFragment_to_countryFragment"
+            app:destination="@id/countryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/countryFragment"
+        android:name="com.waitinglobby.waveplan.ui.country.CountryFragment"
+        android:label="{userSelectedContinent}"
+        tools:layout="@layout/fragment_country">
+        <argument
+            android:name="selectedContinentID"
+            app:argType="integer" />
+        <argument
+            android:name="userSelectedContinent"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_countryFragment_to_stateFragment"
+            app:destination="@id/stateFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/stateFragment"
+        android:name="com.waitinglobby.waveplan.ui.state.StateFragment"
+        android:label="{userSelectedCountry}"
+        tools:layout="@layout/fragment_state">
+        <argument
+            android:name="selectedCountryID"
+            app:argType="integer" />
+        <argument
+            android:name="userSelectedCountry"
+            app:argType="string" />
+        <argument
+            android:name="selectedContinentID"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_stateFragment_to_cityFragment"
+            app:destination="@id/cityFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cityFragment"
+        android:name="com.waitinglobby.waveplan.ui.city.CityFragment"
+        android:label="{userSelectedState}"
+        tools:layout="@layout/fragment_city">
+        <argument
+            android:name="userSelectedState"
+            app:argType="string" />
+        <argument
+            android:name="selectedContinentID"
+            app:argType="integer" />
+        <argument
+            android:name="selectedCountryID"
+            app:argType="integer" />
+        <argument android:name="selectedStateID"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_cityFragment_to_exploreFragment"
+            app:destination="@id/exploreFragment" />
+    </fragment>
+</navigation>

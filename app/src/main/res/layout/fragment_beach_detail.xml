@@ -1,0 +1,1921 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.waitinglobby.waveplan.ui.beachdetail.BeachDetailViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".ui.beachdetail.BeachDetailFragment">
+
+            <FrameLayout
+                android:id="@+id/frame_layout_live"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/image_view_selectedBeach"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:foreground="@drawable/gradient2"
+                        android:scaleType="centerCrop"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:src="@drawable/ocean_beach" />
+
+                    <ToggleButton
+                        android:id="@+id/button_favorite"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:layout_margin="16dp"
+                        android:background="@drawable/ic_favorite_false"
+                        android:backgroundTint="@color/gray"
+                        android:textOff=""
+                        android:textOn=""
+                        app:layout_constraintBottom_toBottomOf="@id/image_view_selectedBeach"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/image_view_waves"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_margin="16dp"
+                        android:src="@drawable/ic_waves"
+                        app:layout_constraintBottom_toTopOf="@id/text_view_windSpeed"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/image_view_selectedBeach"
+                        app:tint="@color/white" />
+
+
+                    <TextView
+                        android:id="@+id/text_view_waveHeight"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-black"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        android:text="@{viewModel.waveHeight}"
+                        android:textColor="@color/white"
+                        android:textSize="36sp"
+                        app:layout_constraintBottom_toTopOf="@id/text_view_windSpeed"
+                        app:layout_constraintStart_toEndOf="@id/image_view_waves"
+                        app:layout_constraintTop_toTopOf="@id/image_view_selectedBeach"
+                        tools:text="5 - 6ft" />
+
+                    <FrameLayout
+                        android:id="@+id/frame_layout_wavePeriodDirection"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="@id/text_view_waveHeight"
+                        app:layout_constraintStart_toEndOf="@id/text_view_waveHeight"
+                        app:layout_constraintTop_toTopOf="@id/text_view_waveHeight">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/text_view_waveDirection"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-light"
+                                android:text="@{@string/wave_direction(viewModel.beachDetails.hours[0].waveDirection.sg)}"
+                                android:textColor="@color/white"
+                                android:textSize="16sp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                tools:text="120°" />
+
+                            <TextView
+                                android:id="@+id/text_view_wavePeriod"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-light"
+                                android:text="@{@string/wave_period(viewModel.beachDetails.hours[0].wavePeriod.sg)}"
+                                android:textColor="@color/white"
+                                android:textSize="16sp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/text_view_waveDirection"
+                                tools:text="12s" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </FrameLayout>
+
+                    <ImageView
+                        android:id="@+id/image_view_wind"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_margin="16dp"
+                        android:src="@drawable/ic_wind"
+                        app:layout_constraintBottom_toBottomOf="@id/image_view_selectedBeach"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/image_view_selectedBeach"
+                        app:tint="@color/white" />
+
+                    <TextView
+                        android:id="@+id/text_view_windSpeed"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-black"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        android:text="@{@string/wind_speed(viewModel.windSpeed)}"
+                        android:textColor="@color/white"
+                        android:textSize="36sp"
+                        app:layout_constraintBottom_toBottomOf="@id/image_view_selectedBeach"
+                        app:layout_constraintStart_toEndOf="@id/image_view_wind"
+                        app:layout_constraintTop_toTopOf="@id/image_view_selectedBeach"
+                        tools:text="5 kts" />
+
+                    <TextView
+                        android:id="@+id/text_view_windDirection"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:fontFamily="sans-serif-light"
+                        android:paddingEnd="8dp"
+                        android:text="@{@string/wind_direction(viewModel.beachDetails.hours[0].windDirection.sg)}"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="@id/image_view_wind"
+                        app:layout_constraintStart_toEndOf="@id/text_view_windSpeed"
+                        app:layout_constraintTop_toTopOf="@id/image_view_wind"
+                        tools:text="45°" />
+
+                    <ImageView
+                        android:id="@+id/image_view_tide"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_margin="16dp"
+                        android:src="@drawable/ic_tide"
+                        app:layout_constraintBottom_toBottomOf="@id/image_view_selectedBeach"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/text_view_windSpeed"
+                        app:tint="@color/white" />
+
+                    <TextView
+                        android:id="@+id/text_view_tide"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-black"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        android:text="3.3ft"
+                        android:textColor="@color/white"
+                        android:textSize="36sp"
+                        app:layout_constraintBottom_toBottomOf="@id/image_view_selectedBeach"
+                        app:layout_constraintStart_toEndOf="@id/image_view_tide"
+                        app:layout_constraintTop_toBottomOf="@id/text_view_windSpeed"
+                        tools:text="3.3ft" />
+
+                    <FrameLayout
+                        android:id="@+id/frame_layout_tideMovement"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="@id/text_view_tide"
+                        app:layout_constraintStart_toEndOf="@id/text_view_tide"
+                        app:layout_constraintTop_toTopOf="@id/text_view_tide">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/text_view_tideRisingFalling"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-light"
+                                android:text="Rising"
+                                android:textColor="@color/white"
+                                android:textSize="16sp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                tools:text="Rising" />
+
+                            <TextView
+                                android:id="@+id/text_view_tideDestiny"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-light"
+                                android:text="3.5ft @ 4:50pm"
+                                android:textColor="@color/white"
+                                android:textSize="16sp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/text_view_tideRisingFalling"
+                                tools:text="3.5ft @ 4:50pm" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </FrameLayout>
+
+                    <HorizontalScrollView
+                        android:id="@+id/horizontal_scroll_forecast"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fillViewport="true"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/image_view_selectedBeach">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <FrameLayout
+                                android:id="@+id/frame_layout_forecastDay1"
+                                android:layout_width="128dp"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/gradient3"
+                                android:padding="4dp">
+
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                    <TextView
+                                        android:id="@+id/text_view_forecastDay1_Title"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="sans-serif-black"
+                                        android:paddingBottom="4dp"
+                                        android:text="@{viewModel.forecastDates[0]}"
+                                        android:textSize="16dp"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        tools:text="Tue, 2/16" />
+
+                                    <View
+                                        android:id="@+id/divider_forecastDay1"
+                                        android:layout_width="1dp"
+                                        android:layout_height="80dp"
+                                        android:layout_marginTop="12dp"
+                                        android:layout_marginBottom="8dp"
+                                        android:background="?android:attr/listDivider"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                    <View
+                                        android:id="@+id/divider_forecastDay1_header"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="1dp"
+                                        android:background="?android:attr/listDivider"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/text_view_forecastDay1_Title" />
+
+                                    <ImageView
+                                        android:id="@+id/image_view_forecastDay1_AM_waves"
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:layout_marginTop="8dp"
+                                        android:src="@drawable/ic_waves"
+                                        app:layout_constraintEnd_toStartOf="@id/divider_forecastDay1"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/divider_forecastDay1_header" />
+
+                                    <ImageView
+                                        android:id="@+id/image_view_forecastDay1_PM_waves"
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:layout_marginTop="8dp"
+                                        android:src="@drawable/ic_waves"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toEndOf="@id/divider_forecastDay1"
+                                        app:layout_constraintTop_toBottomOf="@id/divider_forecastDay1_header" />
+
+                                    <ImageView
+                                        android:id="@+id/image_view_forecastDay1_AM_wind"
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:src="@drawable/ic_wind"
+                                        app:layout_constraintEnd_toStartOf="@id/divider_forecastDay1"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/text_view_forecastDay1_AM_waveHeight" />
+
+                                    <ImageView
+                                        android:id="@+id/image_view_forecastDay1_PM_wind"
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:src="@drawable/ic_wind"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toEndOf="@id/divider_forecastDay1"
+                                        app:layout_constraintTop_toBottomOf="@id/text_view_forecastDay1_PM_waveHeight" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_forecastDay1_AM_waveHeight"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingBottom="8dp"
+                                        android:text="@{viewModel.forecastWaveHeights[16]}"
+                                        android:textSize="12dp"
+                                        app:layout_constraintEnd_toStartOf="@id/divider_forecastDay1"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/image_view_forecastDay1_AM_waves"
+                                        tools:text="5 - 6ft" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_forecastDay1_PM_waveHeight"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingBottom="8dp"
+                                        android:text="@{viewModel.forecastWaveHeights[24]}"
+                                        android:textSize="12dp"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toEndOf="@id/divider_forecastDay1"
+                                        app:layout_constraintTop_toBottomOf="@id/image_view_forecastDay1_PM_waves"
+                                        tools:text="4 - 5ft" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_forecastDay1_AM_windSpeed"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@{@string/wind_speed(viewModel.forecastWindSpeeds[16])}"
+                                        android:textSize="12dp"
+                                        app:layout_constraintEnd_toStartOf="@id/divider_forecastDay1"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/image_view_forecastDay1_AM_wind"
+                                        tools:text="4kts" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_forecastDay1_PM_windSpeed"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@{@string/wind_speed(viewModel.forecastWindSpeeds[24])}"
+                                        android:textSize="12dp"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toEndOf="@id/divider_forecastDay1"
+                                        app:layout_constraintTop_toBottomOf="@id/image_view_forecastDay1_PM_wind"
+                                        tools:text="10kts" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_forecastDay1_AM"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="sans-serif-condensed-medium"
+                                        android:paddingTop="8dp"
+                                        android:text="AM"
+                                        android:textSize="12dp"
+                                        app:layout_constraintEnd_toStartOf="@id/divider_forecastDay1"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/text_view_forecastDay1_AM_windSpeed" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_forecastDay1_PM"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="sans-serif-condensed-medium"
+                                        android:paddingTop="8dp"
+                                        android:text="PM"
+                                        android:textSize="12dp"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toEndOf="@id/divider_forecastDay1"
+                                        app:layout_constraintTop_toBottomOf="@id/text_view_forecastDay1_PM_windSpeed" />
+
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                            </FrameLayout>
+
+                            <FrameLayout
+                                android:id="@+id/frame_layout_forecastDay2"
+                                android:layout_width="128dp"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/gradient3"
+                                android:padding="4dp">
+
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                    <TextView
+                                        android:id="@+id/text_view_forecastDay2_Title"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="sans-serif-black"
+                                        android:paddingBottom="4dp"
+                                        android:text="@{viewModel.forecastDates[1]}"
+                                        android:textSize="16dp"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        tools:text="Wed, 2/17" />
+
+                                    <View
+                                        android:id="@+id/divider_forecastDay2"
+                                        android:layout_width="1dp"
+                                        android:layout_height="80dp"
+                                        android:layout_marginTop="12dp"
+                                        android:layout_marginBottom="8dp"
+                                        android:background="?android:attr/listDivider"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                    <View
+                                        android:id="@+id/divider_forecastDay2_header"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="1dp"
+                                        android:background="?android:attr/listDivider"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/text_view_forecastDay2_Title" />
+
+                                    <ImageView
+                                        android:id="@+id/image_view_forecastDay2_AM_waves"
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:layout_marginTop="8dp"
+                                        android:src="@drawable/ic_waves"
+                                        app:layout_constraintEnd_toStartOf="@id/divider_forecastDay2"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/divider_forecastDay2_header" />
+
+                                    <ImageView
+                                        android:id="@+id/image_view_forecastDay2_PM_waves"
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:layout_marginTop="8dp"
+                                        android:src="@drawable/ic_waves"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toEndOf="@id/divider_forecastDay2"
+                                        app:layout_constraintTop_toBottomOf="@id/divider_forecastDay2_header" />
+
+                                    <ImageView
+                                        android:id="@+id/image_view_forecastDay2_AM_wind"
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:src="@drawable/ic_wind"
+                                        app:layout_constraintEnd_toStartOf="@id/divider_forecastDay2"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/text_view_forecastDay2_AM_waveHeight" />
+
+                                    <ImageView
+                                        android:id="@+id/image_view_forecastDay2_PM_wind"
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:src="@drawable/ic_wind"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toEndOf="@id/divider_forecastDay2"
+                                        app:layout_constraintTop_toBottomOf="@id/text_view_forecastDay2_PM_waveHeight" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_forecastDay2_AM_waveHeight"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingBottom="8dp"
+                                        android:text="@{viewModel.forecastWaveHeights[38]}"
+                                        android:textSize="12dp"
+                                        app:layout_constraintEnd_toStartOf="@id/divider_forecastDay2"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/image_view_forecastDay2_AM_waves"
+                                        tools:text="4 - 5ft" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_forecastDay2_PM_waveHeight"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingBottom="8dp"
+                                        android:text="@{viewModel.forecastWaveHeights[52]}"
+                                        android:textSize="12dp"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toEndOf="@id/divider_forecastDay2"
+                                        app:layout_constraintTop_toBottomOf="@id/image_view_forecastDay2_PM_waves"
+                                        tools:text="3 - 4ft" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_forecastDay2_AM_windSpeed"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@{@string/wind_speed(viewModel.forecastWindSpeeds[38])}"
+                                        android:textSize="12dp"
+                                        app:layout_constraintEnd_toStartOf="@id/divider_forecastDay2"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/image_view_forecastDay2_AM_wind"
+                                        tools:text="16kts" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_forecastDay2_PM_windSpeed"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@{@string/wind_speed(viewModel.forecastWindSpeeds[52])}"
+                                        android:textSize="12dp"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toEndOf="@id/divider_forecastDay2"
+                                        app:layout_constraintTop_toBottomOf="@id/image_view_forecastDay2_PM_wind"
+                                        tools:text="8kts" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_forecastDay2_AM"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="sans-serif-condensed-medium"
+                                        android:paddingTop="8dp"
+                                        android:text="AM"
+                                        android:textSize="12dp"
+                                        app:layout_constraintEnd_toStartOf="@id/divider_forecastDay2"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/text_view_forecastDay2_AM_windSpeed" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_forecastDay2_PM"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="sans-serif-condensed-medium"
+                                        android:paddingTop="8dp"
+                                        android:text="PM"
+                                        android:textSize="12dp"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toEndOf="@id/divider_forecastDay2"
+                                        app:layout_constraintTop_toBottomOf="@id/text_view_forecastDay2_PM_windSpeed" />
+
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                            </FrameLayout>
+
+                            <FrameLayout
+                                android:id="@+id/frame_layout_forecastDay3"
+                                android:layout_width="128dp"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/gradient3"
+                                android:padding="4dp">
+
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                    <TextView
+                                        android:id="@+id/text_view_forecastDay3_Title"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="sans-serif-black"
+                                        android:paddingBottom="4dp"
+                                        android:text="@{viewModel.forecastDates[2]}"
+                                        android:textSize="16dp"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        tools:text="Thu, 2/18" />
+
+                                    <View
+                                        android:id="@+id/divider_forecastDay3"
+                                        android:layout_width="1dp"
+                                        android:layout_height="80dp"
+                                        android:layout_marginTop="12dp"
+                                        android:layout_marginBottom="8dp"
+                                        android:background="?android:attr/listDivider"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                    <View
+                                        android:id="@+id/divider_forecastDay3_header"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="1dp"
+                                        android:background="?android:attr/listDivider"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/text_view_forecastDay3_Title" />
+
+                                    <ImageView
+                                        android:id="@+id/image_view_forecastDay3_AM_waves"
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:layout_marginTop="8dp"
+                                        android:src="@drawable/ic_waves"
+                                        app:layout_constraintEnd_toStartOf="@id/divider_forecastDay3"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/divider_forecastDay3_header" />
+
+                                    <ImageView
+                                        android:id="@+id/image_view_forecastDay3_PM_waves"
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:layout_marginTop="8dp"
+                                        android:src="@drawable/ic_waves"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toEndOf="@id/divider_forecastDay3"
+                                        app:layout_constraintTop_toBottomOf="@id/divider_forecastDay3_header" />
+
+                                    <ImageView
+                                        android:id="@+id/image_view_forecastDay3_AM_wind"
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:src="@drawable/ic_wind"
+                                        app:layout_constraintEnd_toStartOf="@id/divider_forecastDay3"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/text_view_forecastDay3_AM_waveHeight" />
+
+                                    <ImageView
+                                        android:id="@+id/image_view_forecastDay3_PM_wind"
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:src="@drawable/ic_wind"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toEndOf="@id/divider_forecastDay3"
+                                        app:layout_constraintTop_toBottomOf="@id/text_view_forecastDay3_PM_waveHeight" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_forecastDay3_AM_waveHeight"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingBottom="8dp"
+                                        android:text="@{viewModel.forecastWaveHeights[72]}"
+                                        android:textSize="12dp"
+                                        app:layout_constraintEnd_toStartOf="@id/divider_forecastDay3"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/image_view_forecastDay3_AM_waves"
+                                        tools:text="2 - 3ft" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_forecastDay3_PM_waveHeight"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingBottom="8dp"
+                                        android:text="@{viewModel.forecastWaveHeights[84]}"
+                                        android:textSize="12dp"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toEndOf="@id/divider_forecastDay3"
+                                        app:layout_constraintTop_toBottomOf="@id/image_view_forecastDay3_PM_waves"
+                                        tools:text="2 - 3ft" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_forecastDay3_AM_windSpeed"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@{@string/wind_speed(viewModel.forecastWindSpeeds[72])}"
+                                        android:textSize="12dp"
+                                        app:layout_constraintEnd_toStartOf="@id/divider_forecastDay3"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/image_view_forecastDay3_AM_wind"
+                                        tools:text="4kts" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_forecastDay3_PM_windSpeed"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@{@string/wind_speed(viewModel.forecastWindSpeeds[84])}"
+                                        android:textSize="12dp"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toEndOf="@id/divider_forecastDay3"
+                                        app:layout_constraintTop_toBottomOf="@id/image_view_forecastDay3_PM_wind"
+                                        tools:text="2kts" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_forecastDay3_AM"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="sans-serif-condensed-medium"
+                                        android:paddingTop="8dp"
+                                        android:text="AM"
+                                        android:textSize="12dp"
+                                        app:layout_constraintEnd_toStartOf="@id/divider_forecastDay3"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/text_view_forecastDay3_AM_windSpeed" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_forecastDay3_PM"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="sans-serif-condensed-medium"
+                                        android:paddingTop="8dp"
+                                        android:text="PM"
+                                        android:textSize="12dp"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toEndOf="@id/divider_forecastDay3"
+                                        app:layout_constraintTop_toBottomOf="@id/text_view_forecastDay3_PM_windSpeed" />
+
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                            </FrameLayout>
+
+                            <FrameLayout
+                                android:id="@+id/frame_layout_forecastDay4"
+                                android:layout_width="128dp"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/gradient3"
+                                android:padding="4dp">
+
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                    <TextView
+                                        android:id="@+id/text_view_forecastDay4_Title"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="sans-serif-black"
+                                        android:paddingBottom="4dp"
+                                        android:text="@{viewModel.forecastDates[3]}"
+                                        android:textSize="16dp"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        tools:text="2/19" />
+
+                                    <View
+                                        android:id="@+id/divider_forecastDay4"
+                                        android:layout_width="1dp"
+                                        android:layout_height="80dp"
+                                        android:layout_marginTop="12dp"
+                                        android:layout_marginBottom="8dp"
+                                        android:background="?android:attr/listDivider"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                    <View
+                                        android:id="@+id/divider_forecastDay4_header"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="1dp"
+                                        android:background="?android:attr/listDivider"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/text_view_forecastDay4_Title" />
+
+                                    <ImageView
+                                        android:id="@+id/image_view_forecastDay4_AM_waves"
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:layout_marginTop="8dp"
+                                        android:src="@drawable/ic_waves"
+                                        app:layout_constraintEnd_toStartOf="@id/divider_forecastDay4"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/divider_forecastDay4_header" />
+
+                                    <ImageView
+                                        android:id="@+id/image_view_forecastDay4_PM_waves"
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:layout_marginTop="8dp"
+                                        android:src="@drawable/ic_waves"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toEndOf="@id/divider_forecastDay4"
+                                        app:layout_constraintTop_toBottomOf="@id/divider_forecastDay4_header" />
+
+                                    <ImageView
+                                        android:id="@+id/image_view_forecastDay4_AM_wind"
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:src="@drawable/ic_wind"
+                                        app:layout_constraintEnd_toStartOf="@id/divider_forecastDay4"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/text_view_forecastDay4_AM_waveHeight" />
+
+                                    <ImageView
+                                        android:id="@+id/image_view_forecastDay4_PM_wind"
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:src="@drawable/ic_wind"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toEndOf="@id/divider_forecastDay4"
+                                        app:layout_constraintTop_toBottomOf="@id/text_view_forecastDay4_PM_waveHeight" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_forecastDay4_AM_waveHeight"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingBottom="8dp"
+                                        android:text="@{viewModel.forecastWaveHeights[96]}"
+                                        android:textSize="12dp"
+                                        app:layout_constraintEnd_toStartOf="@id/divider_forecastDay4"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/image_view_forecastDay4_AM_waves"
+                                        tools:text="3 - 4ft" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_forecastDay4_PM_waveHeight"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingBottom="8dp"
+                                        android:text="@{viewModel.forecastWaveHeights[106]}"
+                                        android:textSize="12dp"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toEndOf="@id/divider_forecastDay4"
+                                        app:layout_constraintTop_toBottomOf="@id/image_view_forecastDay4_PM_waves"
+                                        tools:text="4 - 5ft" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_forecastDay4_AM_windSpeed"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@{@string/wind_speed(viewModel.forecastWindSpeeds[96])}"
+                                        android:textSize="12dp"
+                                        app:layout_constraintEnd_toStartOf="@id/divider_forecastDay4"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/image_view_forecastDay4_AM_wind"
+                                        tools:text="5kts" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_forecastDay4_PM_windSpeed"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@{@string/wind_speed(viewModel.forecastWindSpeeds[106])}"
+                                        android:textSize="12dp"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toEndOf="@id/divider_forecastDay4"
+                                        app:layout_constraintTop_toBottomOf="@id/image_view_forecastDay4_PM_wind"
+                                        tools:text="7kts" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_forecastDay4_AM"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="sans-serif-condensed-medium"
+                                        android:paddingTop="8dp"
+                                        android:text="AM"
+                                        android:textSize="12dp"
+                                        app:layout_constraintEnd_toStartOf="@id/divider_forecastDay4"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/text_view_forecastDay4_AM_windSpeed" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_forecastDay4_PM"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="sans-serif-condensed-medium"
+                                        android:paddingTop="8dp"
+                                        android:text="PM"
+                                        android:textSize="12dp"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toEndOf="@id/divider_forecastDay4"
+                                        app:layout_constraintTop_toBottomOf="@id/text_view_forecastDay4_PM_windSpeed" />
+
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                            </FrameLayout>
+
+                            <FrameLayout
+                                android:id="@+id/frame_layout_forecastDay5"
+                                android:layout_width="128dp"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/gradient3"
+                                android:padding="4dp">
+
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                    <TextView
+                                        android:id="@+id/text_view_forecastDay5_Title"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="sans-serif-black"
+                                        android:paddingBottom="4dp"
+                                        android:text="@{viewModel.forecastDates[4]}"
+                                        android:textSize="16dp"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        tools:text="2/16" />
+
+                                    <View
+                                        android:id="@+id/divider_forecastDay5"
+                                        android:layout_width="1dp"
+                                        android:layout_height="80dp"
+                                        android:layout_marginTop="12dp"
+                                        android:layout_marginBottom="8dp"
+                                        android:background="?android:attr/listDivider"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                    <View
+                                        android:id="@+id/divider_forecastDay5_header"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="1dp"
+                                        android:background="?android:attr/listDivider"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/text_view_forecastDay5_Title" />
+
+                                    <ImageView
+                                        android:id="@+id/image_view_forecastDay5_AM_waves"
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:layout_marginTop="8dp"
+                                        android:src="@drawable/ic_waves"
+                                        app:layout_constraintEnd_toStartOf="@id/divider_forecastDay5"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/divider_forecastDay5_header" />
+
+                                    <ImageView
+                                        android:id="@+id/image_view_forecastDay5_PM_waves"
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:layout_marginTop="8dp"
+                                        android:src="@drawable/ic_waves"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toEndOf="@id/divider_forecastDay5"
+                                        app:layout_constraintTop_toBottomOf="@id/divider_forecastDay5_header" />
+
+                                    <ImageView
+                                        android:id="@+id/image_view_forecastDay5_AM_wind"
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:src="@drawable/ic_wind"
+                                        app:layout_constraintEnd_toStartOf="@id/divider_forecastDay5"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/text_view_forecastDay5_AM_waveHeight" />
+
+                                    <ImageView
+                                        android:id="@+id/image_view_forecastDay5_PM_wind"
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:src="@drawable/ic_wind"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toEndOf="@id/divider_forecastDay5"
+                                        app:layout_constraintTop_toBottomOf="@id/text_view_forecastDay5_PM_waveHeight" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_forecastDay5_AM_waveHeight"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingBottom="8dp"
+                                        android:text="@{viewModel.forecastWaveHeights[120]}"
+                                        android:textSize="12dp"
+                                        app:layout_constraintEnd_toStartOf="@id/divider_forecastDay5"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/image_view_forecastDay5_AM_waves"
+                                        tools:text="5 - 6ft" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_forecastDay5_PM_waveHeight"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingBottom="8dp"
+                                        android:text="@{viewModel.forecastWaveHeights[130]}"
+                                        android:textSize="12dp"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toEndOf="@id/divider_forecastDay5"
+                                        app:layout_constraintTop_toBottomOf="@id/image_view_forecastDay5_PM_waves"
+                                        tools:text="4 - 5ft" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_forecastDay5_AM_windSpeed"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@{@string/wind_speed(viewModel.forecastWindSpeeds[120])}"
+                                        android:textSize="12dp"
+                                        app:layout_constraintEnd_toStartOf="@id/divider_forecastDay5"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/image_view_forecastDay5_AM_wind"
+                                        tools:text="4kts" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_forecastDay5_PM_windSpeed"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@{@string/wind_speed(viewModel.forecastWindSpeeds[130])}"
+                                        android:textSize="12dp"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toEndOf="@id/divider_forecastDay5"
+                                        app:layout_constraintTop_toBottomOf="@id/image_view_forecastDay5_PM_wind"
+                                        tools:text="10kts" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_forecastDay5_AM"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="sans-serif-condensed-medium"
+                                        android:paddingTop="8dp"
+                                        android:text="AM"
+                                        android:textSize="12dp"
+                                        app:layout_constraintEnd_toStartOf="@id/divider_forecastDay5"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/text_view_forecastDay5_AM_windSpeed" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_forecastDay5_PM"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="sans-serif-condensed-medium"
+                                        android:paddingTop="8dp"
+                                        android:text="PM"
+                                        android:textSize="12dp"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toEndOf="@id/divider_forecastDay5"
+                                        app:layout_constraintTop_toBottomOf="@id/text_view_forecastDay5_PM_windSpeed" />
+
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                            </FrameLayout>
+
+                            <FrameLayout
+                                android:id="@+id/frame_layout_forecastDay6"
+                                android:layout_width="128dp"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/gradient3"
+                                android:padding="4dp">
+
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                    <TextView
+                                        android:id="@+id/text_view_forecastDay6_Title"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="sans-serif-black"
+                                        android:paddingBottom="4dp"
+                                        android:text="@{viewModel.forecastDates[5]}"
+                                        android:textSize="16dp"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        tools:text="2/16" />
+
+                                    <View
+                                        android:id="@+id/divider_forecastDay6"
+                                        android:layout_width="1dp"
+                                        android:layout_height="80dp"
+                                        android:layout_marginTop="12dp"
+                                        android:layout_marginBottom="8dp"
+                                        android:background="?android:attr/listDivider"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                    <View
+                                        android:id="@+id/divider_forecastDay6_header"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="1dp"
+                                        android:background="?android:attr/listDivider"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/text_view_forecastDay6_Title" />
+
+                                    <ImageView
+                                        android:id="@+id/image_view_forecastDay6_AM_waves"
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:layout_marginTop="8dp"
+                                        android:src="@drawable/ic_waves"
+
+                                        app:layout_constraintEnd_toStartOf="@id/divider_forecastDay6"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/divider_forecastDay6_header" />
+
+                                    <ImageView
+                                        android:id="@+id/image_view_forecastDay6_PM_waves"
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:layout_marginTop="8dp"
+                                        android:src="@drawable/ic_waves"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toEndOf="@id/divider_forecastDay6"
+                                        app:layout_constraintTop_toBottomOf="@id/divider_forecastDay6_header" />
+
+                                    <ImageView
+                                        android:id="@+id/image_view_forecastDay6_AM_wind"
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:src="@drawable/ic_wind"
+                                        app:layout_constraintEnd_toStartOf="@id/divider_forecastDay6"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/text_view_forecastDay6_AM_waveHeight" />
+
+                                    <ImageView
+                                        android:id="@+id/image_view_forecastDay6_PM_wind"
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:src="@drawable/ic_wind"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toEndOf="@id/divider_forecastDay6"
+                                        app:layout_constraintTop_toBottomOf="@id/text_view_forecastDay6_PM_waveHeight" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_forecastDay6_AM_waveHeight"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingBottom="8dp"
+                                        android:text="@{viewModel.forecastWaveHeights[144]}"
+                                        android:textSize="12dp"
+                                        app:layout_constraintEnd_toStartOf="@id/divider_forecastDay6"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/image_view_forecastDay6_AM_waves"
+                                        tools:text="5 - 6ft" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_forecastDay6_PM_waveHeight"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingBottom="8dp"
+                                        android:text="@{viewModel.forecastWaveHeights[154]}"
+                                        android:textSize="12dp"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toEndOf="@id/divider_forecastDay6"
+                                        app:layout_constraintTop_toBottomOf="@id/image_view_forecastDay6_PM_waves"
+                                        tools:text="4 - 5ft" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_forecastDay6_AM_windSpeed"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@{@string/wind_speed(viewModel.forecastWindSpeeds[144])}"
+                                        android:textSize="12dp"
+                                        app:layout_constraintEnd_toStartOf="@id/divider_forecastDay6"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/image_view_forecastDay6_AM_wind"
+                                        tools:text="4kts" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_forecastDay6_PM_windSpeed"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@{@string/wind_speed(viewModel.forecastWindSpeeds[154])}"
+                                        android:textSize="12dp"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toEndOf="@id/divider_forecastDay6"
+                                        app:layout_constraintTop_toBottomOf="@id/image_view_forecastDay6_PM_wind"
+                                        tools:text="10kts" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_forecastDay6_AM"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="sans-serif-condensed-medium"
+                                        android:paddingTop="8dp"
+                                        android:text="AM"
+                                        android:textSize="12dp"
+                                        app:layout_constraintEnd_toStartOf="@id/divider_forecastDay6"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/text_view_forecastDay6_AM_windSpeed" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_forecastDay6_PM"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="sans-serif-condensed-medium"
+                                        android:paddingTop="8dp"
+                                        android:text="PM"
+                                        android:textSize="12dp"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toEndOf="@id/divider_forecastDay6"
+                                        app:layout_constraintTop_toBottomOf="@id/text_view_forecastDay6_PM_windSpeed" />
+
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                            </FrameLayout>
+
+                            <FrameLayout
+                                android:id="@+id/frame_layout_forecastDay7"
+                                android:layout_width="128dp"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/gradient3"
+                                android:padding="4dp">
+
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                    <TextView
+                                        android:id="@+id/text_view_forecastDay7_Title"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="sans-serif-black"
+                                        android:paddingBottom="4dp"
+                                        android:text="@{viewModel.forecastDates[6]}"
+                                        android:textSize="16dp"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        tools:text="2/16" />
+
+                                    <View
+                                        android:id="@+id/divider_forecastDay7"
+                                        android:layout_width="1dp"
+                                        android:layout_height="80dp"
+                                        android:layout_marginTop="12dp"
+                                        android:layout_marginBottom="8dp"
+                                        android:background="?android:attr/listDivider"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                    <View
+                                        android:id="@+id/divider_forecastDay7_header"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="1dp"
+                                        android:background="?android:attr/listDivider"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/text_view_forecastDay7_Title" />
+
+                                    <ImageView
+                                        android:id="@+id/image_view_forecastDay7_AM_waves"
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:layout_marginTop="8dp"
+                                        android:src="@drawable/ic_waves"
+
+                                        app:layout_constraintEnd_toStartOf="@id/divider_forecastDay7"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/divider_forecastDay7_header" />
+
+                                    <ImageView
+                                        android:id="@+id/image_view_forecastDay7_PM_waves"
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:layout_marginTop="8dp"
+                                        android:src="@drawable/ic_waves"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toEndOf="@id/divider_forecastDay7"
+                                        app:layout_constraintTop_toBottomOf="@id/divider_forecastDay7_header" />
+
+                                    <ImageView
+                                        android:id="@+id/image_view_forecastDay7_AM_wind"
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:src="@drawable/ic_wind"
+                                        app:layout_constraintEnd_toStartOf="@id/divider_forecastDay7"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/text_view_forecastDay7_AM_waveHeight" />
+
+                                    <ImageView
+                                        android:id="@+id/image_view_forecastDay7_PM_wind"
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:src="@drawable/ic_wind"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toEndOf="@id/divider_forecastDay7"
+                                        app:layout_constraintTop_toBottomOf="@id/text_view_forecastDay7_PM_waveHeight" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_forecastDay7_AM_waveHeight"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingBottom="8dp"
+                                        android:text="@{viewModel.forecastWaveHeights[168]}"
+                                        android:textSize="12dp"
+                                        app:layout_constraintEnd_toStartOf="@id/divider_forecastDay7"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/image_view_forecastDay7_AM_waves"
+                                        tools:text="5 - 6ft" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_forecastDay7_PM_waveHeight"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingBottom="8dp"
+                                        android:text="@{viewModel.forecastWaveHeights[178]}"
+                                        android:textSize="12dp"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toEndOf="@id/divider_forecastDay7"
+                                        app:layout_constraintTop_toBottomOf="@id/image_view_forecastDay7_PM_waves"
+                                        tools:text="4 - 5ft" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_forecastDay7_AM_windSpeed"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@{@string/wind_speed(viewModel.forecastWindSpeeds[168])}"
+                                        android:textSize="12dp"
+                                        app:layout_constraintEnd_toStartOf="@id/divider_forecastDay7"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/image_view_forecastDay7_AM_wind"
+                                        tools:text="4kts" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_forecastDay7_PM_windSpeed"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@{@string/wind_speed(viewModel.forecastWindSpeeds[178])}"
+                                        android:textSize="12dp"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toEndOf="@id/divider_forecastDay7"
+                                        app:layout_constraintTop_toBottomOf="@id/image_view_forecastDay7_PM_wind"
+                                        tools:text="10kts" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_forecastDay7_AM"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="sans-serif-condensed-medium"
+                                        android:paddingTop="8dp"
+                                        android:text="AM"
+                                        android:textSize="12dp"
+                                        app:layout_constraintEnd_toStartOf="@id/divider_forecastDay7"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/text_view_forecastDay7_AM_windSpeed" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_forecastDay7_PM"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="sans-serif-condensed-medium"
+                                        android:paddingTop="8dp"
+                                        android:text="PM"
+                                        android:textSize="12dp"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toEndOf="@id/divider_forecastDay7"
+                                        app:layout_constraintTop_toBottomOf="@id/text_view_forecastDay7_PM_windSpeed" />
+
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                            </FrameLayout>
+
+                        </LinearLayout>
+
+                    </HorizontalScrollView>
+
+                    <FrameLayout
+                        android:id="@+id/frame_layout_weatherData"
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/horizontal_scroll_forecast">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:id="@+id/image_view_airTemp"
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:layout_margin="16dp"
+                                android:src="@drawable/ic_weather"
+                                app:layout_constraintBottom_toTopOf="@id/image_view_waterTemp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:tint="@android:color/holo_orange_light" />
+
+                            <TextView
+                                android:id="@+id/text_view_airTemperature"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingStart="8dp"
+                                android:text="@{@string/air_temperature(viewModel.airTemp)}"
+                                android:textSize="16sp"
+                                app:layout_constraintBottom_toBottomOf="@id/image_view_airTemp"
+                                app:layout_constraintStart_toEndOf="@id/image_view_airTemp"
+                                app:layout_constraintTop_toTopOf="@id/image_view_airTemp"
+                                tools:text="82°" />
+
+                            <ImageView
+                                android:id="@+id/image_view_waterTemp"
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:layout_margin="16dp"
+                                android:src="@drawable/ic_water"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:tint="@android:color/holo_blue_dark" />
+
+                            <TextView
+                                android:id="@+id/text_view_waterTemperature"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingStart="8dp"
+                                android:text="@{@string/water_temperature(viewModel.waterTemp)}"
+                                android:textSize="16sp"
+                                app:layout_constraintBottom_toBottomOf="@id/image_view_waterTemp"
+                                app:layout_constraintStart_toEndOf="@id/image_view_waterTemp"
+                                app:layout_constraintTop_toTopOf="@id/image_view_waterTemp"
+                                tools:text="60°" />
+
+                            <ImageView
+                                android:id="@+id/image_view_cloudCover"
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:layout_margin="16dp"
+                                android:src="@drawable/ic_cloud"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/image_view_waterTemp"
+                                app:tint="@android:color/darker_gray" />
+
+                            <TextView
+                                android:id="@+id/text_view_cloudCover"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingStart="8dp"
+                                android:text="@{@string/cloud_cover(viewModel.beachDetails.hours[0].cloudCover.sg)}"
+                                android:textSize="16sp"
+                                app:layout_constraintBottom_toBottomOf="@id/image_view_cloudCover"
+                                app:layout_constraintStart_toEndOf="@id/image_view_cloudCover"
+                                app:layout_constraintTop_toTopOf="@id/image_view_cloudCover"
+                                tools:text="40%" />
+
+                            <View
+                                android:id="@+id/divider_weather"
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginTop="12dp"
+                                android:layout_marginBottom="12dp"
+                                android:background="?android:attr/listDivider"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/text_view_cloudCover"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <ImageView
+                                android:id="@+id/image_view_visibility"
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:layout_marginStart="20dp"
+                                android:src="@drawable/ic_visibility"
+                                app:layout_constraintBottom_toBottomOf="@id/text_view_airTemperature"
+                                app:layout_constraintStart_toEndOf="@id/divider_weather"
+                                app:layout_constraintTop_toTopOf="@id/text_view_airTemperature"
+                                app:tint="@android:color/darker_gray" />
+
+                            <TextView
+                                android:id="@+id/text_view_visibility"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingStart="8dp"
+                                android:text="@{@string/visibility(viewModel.visibility)}"
+                                android:textSize="16sp"
+                                app:layout_constraintBottom_toBottomOf="@id/text_view_airTemperature"
+                                app:layout_constraintStart_toEndOf="@id/image_view_visibility"
+                                app:layout_constraintTop_toTopOf="@id/text_view_airTemperature"
+                                tools:text="Visibility: 20 miles" />
+
+                            <ImageView
+                                android:id="@+id/image_view_humidity"
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:layout_marginStart="20dp"
+                                android:src="@drawable/ic_humidity"
+                                app:layout_constraintBottom_toBottomOf="@id/text_view_waterTemperature"
+                                app:layout_constraintStart_toEndOf="@id/divider_weather"
+                                app:layout_constraintTop_toTopOf="@id/text_view_waterTemperature"
+                                app:tint="@android:color/holo_blue_dark" />
+
+                            <TextView
+                                android:id="@+id/text_view_humidity"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingStart="8dp"
+                                android:text="@{@string/humidity(viewModel.beachDetails.hours[0].humidity.sg)}"
+                                android:textSize="16sp"
+                                app:layout_constraintBottom_toBottomOf="@id/text_view_waterTemperature"
+                                app:layout_constraintStart_toEndOf="@id/image_view_humidity"
+                                app:layout_constraintTop_toTopOf="@id/text_view_waterTemperature"
+                                tools:text="Humidity: 45%" />
+
+                            <ImageView
+                                android:id="@+id/image_view_current"
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:layout_marginStart="20dp"
+                                android:src="@drawable/ic_current"
+                                app:layout_constraintBottom_toBottomOf="@id/image_view_cloudCover"
+                                app:layout_constraintStart_toEndOf="@id/divider_weather"
+                                app:layout_constraintTop_toTopOf="@id/image_view_cloudCover"
+                                app:tint="@android:color/holo_red_light" />
+
+                            <TextView
+                                android:id="@+id/text_view_currentSpeed"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingStart="8dp"
+                                android:text="@{@string/current_speed(viewModel.beachDetails.hours[0].currentSpeed.sg)}"
+                                android:textSize="16sp"
+                                app:layout_constraintBottom_toBottomOf="@id/text_view_cloudCover"
+                                app:layout_constraintStart_toEndOf="@id/image_view_current"
+                                app:layout_constraintTop_toTopOf="@id/text_view_cloudCover"
+                                tools:text="Current: 1 ft/sec" />
+
+                            <TextView
+                                android:id="@+id/text_view_currentDirection"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingStart="6dp"
+                                android:text="@{@string/current_direction(viewModel.beachDetails.hours[0].currentDirection.sg)}"
+                                android:textSize="16sp"
+                                app:layout_constraintBottom_toBottomOf="@id/text_view_currentSpeed"
+                                app:layout_constraintStart_toEndOf="@id/text_view_currentSpeed"
+                                app:layout_constraintTop_toTopOf="@id/text_view_currentSpeed"
+                                tools:text="at 210°" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </FrameLayout>
+
+                    <View
+                        android:id="@+id/divider"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginEnd="12dp"
+                        android:background="?android:attr/listDivider"
+                        app:layout_constraintTop_toBottomOf="@id/frame_layout_weatherData"
+                        tools:layout_editor_absoluteX="12dp" />
+
+                    <FrameLayout
+                        android:id="@+id/frame_layout_swell"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/divider">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <FrameLayout
+                                android:id="@+id/frame_layout_primarySwell"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingStart="16dp"
+                                android:paddingEnd="16dp"
+                                app:layout_constraintBottom_toTopOf="@id/frame_layout_secondarySwell"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                    <ImageView
+                                        android:id="@+id/image_view_primarySwellIcon"
+                                        android:layout_width="16dp"
+                                        android:layout_height="16dp"
+                                        android:src="@drawable/ic_circle"
+                                        app:layout_constraintBottom_toBottomOf="@id/text_view_primarySwellHeight"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="@id/text_view_primarySwellHeight"
+                                        app:tint="#FF9800" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_primarySwellTitle"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="sans-serif-light"
+                                        android:paddingStart="16dp"
+                                        android:paddingEnd="16dp"
+                                        android:text="Primary Swell"
+                                        android:textSize="16sp"
+                                        app:layout_constraintBottom_toBottomOf="@id/text_view_primarySwellHeight"
+                                        app:layout_constraintStart_toEndOf="@id/image_view_primarySwellIcon"
+                                        app:layout_constraintTop_toTopOf="@id/text_view_primarySwellHeight" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_primarySwellHeight"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="sans-serif-black"
+                                        android:text="@{viewModel.primarySwellHeight}"
+                                        android:textSize="36sp"
+                                        app:layout_constraintBottom_toBottomOf="@id/frame_layout_wavePeriodDirectionGroundSwellPrimary"
+                                        app:layout_constraintEnd_toStartOf="@id/frame_layout_wavePeriodDirectionGroundSwellPrimary"
+                                        app:layout_constraintTop_toTopOf="@id/frame_layout_wavePeriodDirectionGroundSwellPrimary"
+                                        tools:text="5 - 6ft" />
+
+                                    <FrameLayout
+                                        android:id="@+id/frame_layout_wavePeriodDirectionGroundSwellPrimary"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingStart="12dp"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent">
+
+                                        <androidx.constraintlayout.widget.ConstraintLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent">
+
+                                            <TextView
+                                                android:id="@+id/text_view_primarySwellDirection"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:fontFamily="sans-serif-light"
+                                                android:text="@{@string/wave_direction(viewModel.beachDetails.hours[0].swellDirection.sg)}"
+                                                android:textSize="16sp"
+                                                app:layout_constraintStart_toStartOf="parent"
+                                                app:layout_constraintTop_toTopOf="parent"
+                                                tools:text="180°" />
+
+                                            <TextView
+                                                android:id="@+id/text_view_primarySwellPeriod"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:fontFamily="sans-serif-light"
+                                                android:text="@{@string/wave_period(viewModel.beachDetails.hours[0].swellPeriod.sg)}"
+                                                android:textSize="16sp"
+                                                app:layout_constraintStart_toStartOf="parent"
+                                                app:layout_constraintTop_toBottomOf="@id/text_view_primarySwellDirection"
+                                                tools:text="12s" />
+                                        </androidx.constraintlayout.widget.ConstraintLayout>
+                                    </FrameLayout>
+
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                            </FrameLayout>
+
+                            <FrameLayout
+                                android:id="@+id/frame_layout_secondarySwell"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingStart="16dp"
+                                android:paddingEnd="16dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                    <ImageView
+                                        android:id="@+id/image_view_secondarySwellIcon"
+                                        android:layout_width="16dp"
+                                        android:layout_height="16dp"
+                                        android:src="@drawable/ic_circle"
+                                        app:layout_constraintBottom_toBottomOf="@id/text_view_secondarySwellHeight"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="@id/text_view_secondarySwellHeight"
+                                        app:tint="#8BC34A" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_secondarySwellTitle"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="sans-serif-light"
+                                        android:paddingStart="16dp"
+                                        android:paddingEnd="16dp"
+                                        android:text="Secondary Swell "
+                                        android:textSize="16sp"
+                                        app:layout_constraintBottom_toBottomOf="@id/text_view_secondarySwellHeight"
+                                        app:layout_constraintStart_toEndOf="@id/image_view_secondarySwellIcon"
+                                        app:layout_constraintTop_toTopOf="@id/text_view_secondarySwellHeight" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_secondarySwellHeight"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="sans-serif-black"
+                                        android:text="@{viewModel.secondarySwellHeight}"
+                                        android:textSize="36sp"
+                                        app:layout_constraintBottom_toBottomOf="@id/frame_layout_wavePeriodDirectionGroundSwellSecondary"
+                                        app:layout_constraintEnd_toStartOf="@id/frame_layout_wavePeriodDirectionGroundSwellSecondary"
+                                        app:layout_constraintTop_toTopOf="@id/frame_layout_wavePeriodDirectionGroundSwellSecondary"
+                                        tools:text="4 - 5ft" />
+
+                                    <FrameLayout
+                                        android:id="@+id/frame_layout_wavePeriodDirectionGroundSwellSecondary"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingStart="12dp"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent">
+
+                                        <androidx.constraintlayout.widget.ConstraintLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent">
+
+                                            <TextView
+                                                android:id="@+id/text_view_secondarySwellDirection"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:fontFamily="sans-serif-light"
+                                                android:text="@{@string/wave_direction(viewModel.beachDetails.hours[0].secondarySwellDirection.sg)}"
+                                                android:textSize="16sp"
+                                                app:layout_constraintStart_toStartOf="parent"
+                                                app:layout_constraintTop_toTopOf="parent"
+                                                tools:text="250°" />
+
+                                            <TextView
+                                                android:id="@+id/text_view_secondarySwellPeriod"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:fontFamily="sans-serif-light"
+                                                android:text="@{@string/wave_period(viewModel.beachDetails.hours[0].secondarySwellPeriod.sg)}"
+                                                android:textSize="16sp"
+                                                app:layout_constraintStart_toStartOf="parent"
+                                                app:layout_constraintTop_toBottomOf="@id/text_view_secondarySwellDirection"
+                                                tools:text="8s" />
+
+                                        </androidx.constraintlayout.widget.ConstraintLayout>
+                                    </FrameLayout>
+
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                            </FrameLayout>
+
+                            <FrameLayout
+                                android:id="@+id/frame_layout_windSwell"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingStart="16dp"
+                                android:paddingEnd="16dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/frame_layout_secondarySwell">
+
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                    <ImageView
+                                        android:id="@+id/image_view_windSwellIcon"
+                                        android:layout_width="16dp"
+                                        android:layout_height="16dp"
+                                        android:src="@drawable/ic_circle"
+                                        app:layout_constraintBottom_toBottomOf="@id/text_view_windWaveHeight"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="@id/text_view_windWaveHeight"
+                                        app:tint="#1976D2" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_windSwellTitle"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="sans-serif-light"
+                                        android:paddingStart="16dp"
+                                        android:paddingEnd="16dp"
+                                        android:text="Wind Swell"
+                                        android:textSize="16sp"
+                                        app:layout_constraintBottom_toBottomOf="@id/text_view_windWaveHeight"
+                                        app:layout_constraintStart_toEndOf="@id/image_view_windSwellIcon"
+                                        app:layout_constraintTop_toTopOf="@id/text_view_windWaveHeight" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_windWaveHeight"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="sans-serif-black"
+                                        android:text="@{viewModel.windSwellHeight}"
+                                        android:textSize="36sp"
+                                        app:layout_constraintBottom_toBottomOf="@id/frame_layout_wavePeriodDirectionWindSwell"
+                                        app:layout_constraintEnd_toStartOf="@id/frame_layout_wavePeriodDirectionWindSwell"
+                                        app:layout_constraintTop_toTopOf="@id/frame_layout_wavePeriodDirectionWindSwell"
+                                        tools:text="1 - 2ft" />
+
+                                    <FrameLayout
+                                        android:id="@+id/frame_layout_wavePeriodDirectionWindSwell"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="12dp"
+                                        android:paddingStart="12dp"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent">
+
+                                        <androidx.constraintlayout.widget.ConstraintLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent">
+
+                                            <TextView
+                                                android:id="@+id/text_view_windWaveDirection"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:fontFamily="sans-serif-light"
+                                                android:text="@{@string/wave_direction(viewModel.beachDetails.hours[0].windWaveDirection.sg)}"
+                                                android:textSize="16sp"
+                                                app:layout_constraintStart_toStartOf="parent"
+                                                app:layout_constraintTop_toTopOf="parent"
+                                                tools:text="150°" />
+
+                                            <TextView
+                                                android:id="@+id/text_view_windWavePeriod"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:fontFamily="sans-serif-light"
+                                                android:text="@{@string/wave_period(viewModel.beachDetails.hours[0].windWavePeriod.sg)}"
+                                                android:textSize="16sp"
+                                                app:layout_constraintStart_toStartOf="parent"
+                                                app:layout_constraintTop_toBottomOf="@id/text_view_windWaveDirection"
+                                                tools:text="7s" />
+
+                                            <!-- test related views below -->
+
+                                        </androidx.constraintlayout.widget.ConstraintLayout>
+                                    </FrameLayout>
+
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                            </FrameLayout>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:id="@+id/frame_layout_loading"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:background="@color/gray"
+                        tools:visibility="invisible"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/image_view_loading"
+                            android:layout_width="280dp"
+                            android:layout_height="280dp"
+                            android:src="@drawable/loading_animation"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:id="@+id/frame_layout_error"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:visibility="gone"
+                        android:background="@color/gray"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                app:layout_constraintTop_toTopOf="parent"
+                                android:gravity="center_horizontal"
+                                android:orientation="vertical"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:id="@+id/image_view_error"
+                                android:layout_width="80dp"
+                                android:layout_height="80dp"
+                                android:src="@drawable/ic_connection_error"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/text_view_error"
+                                app:layout_constraintTop_toBottomOf="@id/image_view_error"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                android:gravity="center"
+                                android:padding="24dp"
+                                android:layout_marginBottom="28dp"
+                                android:textSize="24dp"
+                                android:text="An unexpected error occurred. Please check your connectivity and try again."/>
+
+                            </LinearLayout>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </FrameLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </FrameLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</layout>
