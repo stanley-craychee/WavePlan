@@ -13,9 +13,9 @@ Users of this app will benefit from saving time, energy, and travel expenses by 
 
 ------------Features
 
-1. Users navigate to any beach around the world via a set of geographical filters. 
-2. Users can mark any given beach as a 'favorite', which will add the beach to their list of saved beaches for quick access in the future.
-3. Users are able to view a 'favorites' page of their saved beaches, and upon selecting a beach they'll be presented with a view of the current ocean and weather conditions, as well as the swell and wind forecast for a 7 day period from the current date.
+1. Users navigate to any beach around the world via a set of geographical filters
+2. Users can mark any given beach as a 'favorite', which will add the beach to their list of saved beaches for quick access in the future
+3. Users are able to view a 'favorites' page of their saved beaches, and upon selecting a beach they'll be presented with a view of the current and forecasted ocean and weather conditions
 
 Ocean conditions presented:
 1. Swell height, direction, and period
