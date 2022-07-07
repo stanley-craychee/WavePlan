@@ -30,3 +30,11 @@ Weather conditions presented:
 3. Cloud coverage
 4. Visibility
 5. Humidity
+
+-------Screenshots-------
+
+![image](https://user-images.githubusercontent.com/108777490/177670298-f7dc8458-3004-4b50-860b-0507a970e6b2.png)
+![image](https://user-images.githubusercontent.com/108777490/177670377-1cac3e65-366b-49b9-81ef-7eeb7c60059d.png)
+![image](https://user-images.githubusercontent.com/108777490/177670434-ba7adb23-c2cd-4992-aca1-7735b59ca414.png)
+![image](https://user-images.githubusercontent.com/108777490/177670618-4c35f3df-2682-407c-9d45-6ece45390708.png)
+
