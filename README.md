@@ -38,3 +38,6 @@ Weather conditions presented:
 ![image](https://user-images.githubusercontent.com/108777490/177670434-ba7adb23-c2cd-4992-aca1-7735b59ca414.png)
 ![image](https://user-images.githubusercontent.com/108777490/177670618-4c35f3df-2682-407c-9d45-6ece45390708.png)
 
+-------Setup & Install-------
+1. Open the project in Android Studio
+2. Run the app using Android Studio's device emulater hooked up to any device running Android 11.0 (API level 30)
